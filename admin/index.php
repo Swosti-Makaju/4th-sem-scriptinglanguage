@@ -16,6 +16,12 @@ if(!isset($_SESSION['userlogin'])){
       <link rel="stylesheet" href="../css/bootstrap.css">
 </head>
 <body>
-      <h1>welcome to Swastik College</h1>
+      <div class="container">
+      <h1>welcome to Administrative pannel of Swastik College</h1>
+      <p>
+            Hello<?php echo $_SESSION['username']; ?>!
+      </p>
+      <a onclick="return confirm('Are you sure to logout?')" href="logout.php">Logout</a>
+      </div>
 </body>
 </html>

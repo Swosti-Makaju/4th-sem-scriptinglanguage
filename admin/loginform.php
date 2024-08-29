@@ -16,11 +16,11 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
      $loginStmt = $con->prepare($sql);
      $loginStmt -> execute();
 
-     $loginUser=$loginStmt->fetch(PDO::FETCH_ASSOC);
-     if($loginUser){
+     $loginuser=$loginStmt->fetch(PDO::FETCH_ASSOC);
+     if($loginuser){
         $_SESSION['user_login']=true;
         // $_SESSION['username']=$username;
-        $_SESSION['username'];
+        $_SESSION['username']=$loginuser['username'];
         header("Location: index.php");
         die;
        // echo "Login Successfully......";
