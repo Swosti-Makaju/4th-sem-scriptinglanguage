@@ -1,34 +1,38 @@
 <?php
 session_start();
+require_once '../connection.php';
+if($_SERVER['REQUEST_METHOD']==='POST'){
+    $username =$_POST['username'];
+    $pwd= $_POST['pwd'];
 
-require_once"../connection.php";
+    $sql= "SELECT * FROM users WHERE username='$username' AND password='$pwd'";
+    $loginStmt = $con ->prepare($sql);
+    $loginStmt->execute();
 
-if($_SERVER['REQUEST_METHOD']=== 'POST'){
-      //handle login submit
-    /*  $username = $_POST['username'];
-      $password = $_POST['password'];
-      if($username === 'ram' && $password === '1234'){
-            echo 'Correct Login';
-      }else{
-            echo 'Invalid credentials';
-      }*/
-     $sql = "SELECT * FROM users WHERE username='$username' AND password='1234'";
-     $loginStmt = $con->prepare($sql);
-     $loginStmt -> execute();
-
-     $loginuser=$loginStmt->fetch(PDO::FETCH_ASSOC);
-     if($loginuser){
+    $loginuser= $loginStmt->fetch(PDO::FETCH_ASSOC);
+    if($loginuser){
+        // echo "login Succcessful";
         $_SESSION['user_login']=true;
         // $_SESSION['username']=$username;
-        $_SESSION['username']=$loginuser['username'];
+
+        $_SESSION['username']= $loginuser['username'];
+
+        $_SESSION['userId']= $loginuser['id'];
         header("Location: index.php");
         die;
-       // echo "Login Successfully......";
-     }else{
-        echo "Invalid Creadentials.......";
-     }
+    }
+    else{
+        header("Location: loginform.php?error=Your credentials do not mach our records.");
+        die;
+    }
+    // if ($username === 'sita' && pwd ==='sita@123'){
+    //     echo 'Correct Login.';
+    // }
+    //     else{
+    //         echo 'Invalid credentials';
+    //     }
+   
 }
-
 
 ?>
 
@@ -42,17 +46,15 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
 </head>
 <body>
     <div class="container">
-
-    <?php if(isset($_GET['error'])){?>
-        <div class="alert alert-danger">
+            <?php
+if(isset($_GET['error'])){
+    ?> <div class="alert alert-danger">
         <?php echo $_GET['error'];?>
-        </div>
-       
-  <?php  } ?>
-
-  
-
-        <form action="">
+</div>
+<?php
+}
+            ?>
+        <form action="" method="POST">
             <div class="row">
                 <div class="col-4">
                     <label for="username">Username</label>
@@ -72,7 +74,7 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
             </div><div class="row">
                 <div class="col-12">
 
-                <button class="btn btn-primary" type="submit">Login</button>
+                <button class="btn btn-primary" type="submit">Login</button>  <!--btn-secondary, btn-warning (you can try more)-->
                 </div>
             </div>
         </form>
