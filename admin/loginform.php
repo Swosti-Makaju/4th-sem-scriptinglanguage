@@ -19,8 +19,9 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
      $loginUser=$loginStmt->fetch(PDO::FETCH_ASSOC);
      if($loginUser){
         $_SESSION['user_login']=true;
-        $_SESSION['userbname']=$username;
-        header("Location:index.php");
+        // $_SESSION['username']=$username;
+        $_SESSION['username'];
+        header("Location: index.php");
         die;
        // echo "Login Successfully......";
      }else{
