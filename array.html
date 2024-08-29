@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<body>
+    <script>
+        const qualifications=[
+        {
+                    title:"SEE",
+                    year:2075, 
+                },
+                {
+                    title:"+2",
+                    year:2077, 
+                },
+                {
+                    title:"BCA",
+                    year:2080, 
+                },
+        ];
+        //const titles=qualifications.map((item)=>{
+        //title:item.title
+        //});
+        const titles=qualifications.map(({title})=>{
+            title
+        });
+        const years=qualifications.map(({year})=>{
+         year
+        });
+        const BCA=qualifications.find((item)=>{
+          return item.title==='BCA';
+        });
+        // if(!BCA){
+        //     console.log("Student doesnot have BCA.");
+        // }
+        //     else{
+        //       console.log(BCA);
+        //     }
+
+            console.log(titles);
+            console.log(years);
+
+            let myarr=[
+                1,
+                2,
+                3,
+                4,5,6,7,8,9,
+            ];
+            
+    </script>
+</body>
+</html>

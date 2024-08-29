@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mydiv {
+            width: 200px;
+            height: 200px;
+            border: 1px solid rebeccapurple;
+            background-color: rgb(111, 95, 14);
+        }
+    </style>
+</head>
+<body>
+    <div id="mydiv">Hello</div>
+    <button onclick="changeBgcolor()">Change Div</button>
+    <button onclick="createNewDiv()">Create  Div</button>
+    <script>
+        function changeBgcolor(){
+            let myDiv= document.querySelector('#mydiv');
+            myDiv.style.color="blue";
+            myDiv.style.backgroundColor="red";
+            myDiv.style.display="none";
+
+            //document.querySelector('body').style.backgroundColor="gray";
+
+        }
+function removeDiv(){
+    let myDiv=document.querySelector('#mydiv');
+    myDiv.remove();
+}
+        function createNewDiv(){
+            const newDiv = document.createElement('DIV');
+            newDiv.style.width="300px";
+            newDiv.style.height="300px";
+            newDiv.style.border="1px solid green";
+            newDiv.innerHTML="<h3>New Div Created</h3>";
+            document.querySelector('body').appendChild(newDiv);
+           // document.querySelector('#mydiv').appendChild(newDiv);
+        }
+    </script>
+</body>
+</html>

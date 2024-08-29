@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>JavaScript</title>
+</head>
+
+<body>
+      <div id="output"></div>
+      <button onclick="square">Find Square</button>
+      <script>
+           /* function square(n){
+            return n*n;
+            alert("Hello");
+            }*/
+
+            const student= {
+                  name:"sita",
+                  age:"8",
+                  
+                  getInfo: function(){
+                        console.log(this.name,this.age);
+                  },
+                  getInfo1: function(){
+                        console.log();
+                  }
+            }
+            console.log(student.getInfo());
+            console.log(student.getInfo1())
+
+        /*  const squaree=function(n){
+                  return n*n;
+            }
+
+            //arrow function
+            let square = (n) => n * n;
+            let square1 = (n) => {
+                  console.log(this);
+                  //console.log(n)
+                  return n * n;
+            }
+            console.log(square(4));
+            console.log(square1(4));
+
+            /*function myfunction(p1='',p2=null,p3=200){ //mix types of values
+                  console.log(p1,p2,p3);
+            
+                  return false;
+            }
+            
+            myfunction();*/
+
+            //console.log(square(5));
+
+      </script>
+</body>
+
+</html>

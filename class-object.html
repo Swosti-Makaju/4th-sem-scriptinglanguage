@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>JavaScript</title>
+      <style>
+            #mydiv{
+                  background-color: blue;
+            }
+      </style>
+</head>
+<body>
+      <!-- <div id="output"></div>
+      <button onclick="getstudentInfo()">get info</button> -->
+
+      <div id="mydiv">
+            Hello WOrld !
+      </div>
+      <button onclick="ChangeBgColor()">Change Div</button>
+      <button onclick="createNewDiv()">Create Div</button>
+      <script>
+            function ChangeBgColor(){
+                  let mydiv = document.querySelector('#mydiv')
+                  mydiv.style.color="white";
+                  mydiv.style.backgroundColor="blue";
+                  mydiv.style.display="none";
+
+                  document.querySelector('body').style.backgroundColor=ChangeBgColor = "gray";
+            }
+
+            function createNewDiv(){
+                  const newDiv = document.createElement('DIV');
+                  newDiv.style.width="100px";
+                  newDiv.style.height="100px";
+                  newDiv.style.width
+            }
+      </script>
+    
+      <!-- <script>
+            
+           class Student{
+                  constructor(name){
+                        this.name='';
+                        this.age='';
+                  }
+                  getInfo(){
+                        return this.name + ' ' + this.age;
+                  }
+            }
+         //   const std =new Student();
+           // std.address="Bkt";
+            //console.log(std.address);
+
+            const student = {
+                  name:"rr",
+                  age:"10", 
+                  address:{
+                        district:'bkt',
+                        street:'',
+                        postcode:'',
+                        province:'',
+                  },
+                  
+                  qualifications:[
+                        {
+                      title:'SEE',
+                      year:'',
+                  },
+                  {
+                        title:'+2',
+                        year:'',  
+                  },
+                  {
+                        title:'BCA',
+                        year:'',  
+                  },
+            ],
+                  getaddress: function(){
+                  return this.address.district+this.address.postcode;
+                  },
+
+                  getInfo: function(){
+                        return this.name + " " + this.age + "  " + this.address;
+                  },
+                  getqualifications: function() {
+                        //loop
+                        let q = '';
+                        this.qualifications.map(function(qualifications) {
+                              q+= `${qualifications.title/$qualifications.year}\n`;
+                        });
+                        return q;
+                   },
+                  };
+           
+
+            console.log(student.qualifications[0].title);
+            console.log(student.address.district);
+
+            let anotherkey="email";
+            student[anotherkey]="email";
+
+            student.name="shyam"; //updating new name
+
+            //adding new property
+            student.email="shyam12@gmail.com";
+
+            student.getDetailInfo = function(){
+                  return this.name + " " + this.age + "  " + this.address + " " + this.email;
+               
+            } -->
+
+            <!-- console.log(student.getInfo());
+            function getstudentInfo(){
+                  document.querySelector("#output").innerHTML=student.getqualifications;
+            }
+
+            function car(make,model,year){
+                  this.make=make;
+                  this.model=mustang;
+                  this.year=1998;
+            }
+//javascript array function
+                  // let x=10;
+                  // let x = document.getElementById("myForm");
+                  // or
+                  // let x = document.myForm;
+
+
+      </script> -->
+</body>
+</html>
