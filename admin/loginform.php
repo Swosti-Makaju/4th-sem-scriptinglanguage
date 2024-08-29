@@ -41,6 +41,16 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
 </head>
 <body>
     <div class="container">
+
+    <?php if(isset($_GET['error'])){?>
+        <div class="alert alert-danger">
+        <?php echo $_GET['error'];?>
+        </div>
+       
+  <?php  } ?>
+
+  
+
         <form action="">
             <div class="row">
                 <div class="col-4">
