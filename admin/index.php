@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if(!isset($_SESSION['userlogin'])){
+if(!isset($_SESSION['user_login'])){
       header("Location:loginform.php?error=You are not logged in , please login in first.");
       die;
 }
