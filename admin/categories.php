@@ -40,14 +40,6 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </tr>
 </thead>
 <tbody>
-    <tr>
-        <td>1</td>
-        <td>Mobiles</td>
-        <td>Active</td>
-        <td>Edit | Delete</td>
-</tr>
-</tbody>
-<tbody>
 <?php
     foreach($categories as $category){
         ?>
@@ -55,6 +47,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo $category['id'];?></td>
             <td><?php echo $category['name'];?></td>
             <td><?php echo $category['status']==1?'Active':'Inactive';?></td>
+            <td>Edit | Delete</td>
         </tr>
         <?php
     }

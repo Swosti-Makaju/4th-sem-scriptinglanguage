@@ -44,7 +44,7 @@ die;
 <form method="post" action="">
   <div class="form-group">
     <label for="name">Name:</label>
-    <input type="name" class="form-control" id="name">
+    <input type="text" name="name" class="form-control" id="text">
   </div>
   <div class="form-group">
     <label for="description">Description:</label>
