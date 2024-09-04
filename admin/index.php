@@ -1,10 +1,5 @@
 <?php
-
-session_start();
-if(!isset($_SESSION['user_login'])){
-      header("Location:loginform.php?error=You are not logged in , please login in first.");
-      die;
-}
+require_once"./logincheck.php";
 ?>
 
 <!DOCTYPE html>
@@ -16,12 +11,12 @@ if(!isset($_SESSION['user_login'])){
       <link rel="stylesheet" href="../css/bootstrap.css">
 </head>
 <body>
-      <div class="container">
-      <h1>welcome to Administrative pannel of Swastik College</h1>
-      <p>
-            Hello<?php echo $_SESSION['username']; ?>!
-      </p>
-      <a onclick="return confirm('Are you sure to logout?')" href="logout.php">Logout</a>
-      </div>
+      <div class="container border">
+            <p>
+                  Hello<?php echo $_SESSION['username']; ?>!
+                  <a onclick="return confirm('Are you sure to logout?')" href="logout.php">Logout</a>
+            </p>
+            <?php require_once("./menus.php"); ?>
+           </div>
 </body>
 </html>
