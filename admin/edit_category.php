@@ -1,31 +1,21 @@
 <?php
 require_once "./logincheck.php"; 
-$id=$_GET['id'];
-$sql= "SELECT * FROM categories WHERE id=$id" ;
+$id=(int) $_GET['id'];
+if (!isset( $_GET['id'])){
+  // die("Please provide a valid ID for the category");
+  header("Location:categories.php?error=Please provide a valid ID for the category");
+  die;
+}
+$id=(int)  $_GET['id'];
+
+$sql="SELECT * FROM categories WHERE id=$id";
 $stmt= $con->prepare($sql);
-$stmt-> execute();
-$category= $stmt->fetch(PDO::FETCH_ASSOC);
-// print_r($category);
-// die;
-
-if($_SERVER['REQUEST_METHOD']=== 'POST'){
-      //handle login submit
-      $name = $_POST['name'];
-      $description = $_POST['description'];
-      $status=$_POST['status'];
-
-      $sql="UPDATE categories SET
-      name='$name',
-      description='$description',
-      status=$status
-      WHERE id=$id";
-
-      $catStmt= $con->prepare($sql);
-      $catStmt->execute();
-
-      //redirect the user to category listing page
-      header("Location:categories.php?success=Category added successfully.");
-      die;
+$stmt->execute();
+$category = $stmt->fetch(PDO::FETCH_ASSOC);
+if(!$category){
+  // die("No category found with the given ID");
+   header("Location:categories.php?error=Please provide a valid ID for the category");
+   die;
 }
 ?>
 <!DOCTYPE html>

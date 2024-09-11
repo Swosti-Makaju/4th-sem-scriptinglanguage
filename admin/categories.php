@@ -29,7 +29,19 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <a href="add_category.php" class="btn btn-primary">Add New</a>
 </div>
 <div class="card-body p-8">
+<div class="card-body p-0">
+    <?php if(isset($_GET['error'])){?>
+     <div class="alert alert-danger">
+        <?php echo $_GET['error'];?>
+     </div>
+     <?php } ?>
 
+     <?php if(isset($_GET['success'])){?>
+     <div class="alert alert-danger">
+        <?php echo $_GET['success'];?>
+     </div>
+     <?php } ?>
+     </div>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -49,7 +61,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo $category['status']==1?'Active':'Inactive';?></td>
             <td>
                 <a href="edit_category.php?id=<?php echo $category['id'];?>">Edit</a> | 
-                <a href="">Delete</a>
+                <a href="delete_category.php">Delete</a>
             </td>
         </tr>
         <?php
