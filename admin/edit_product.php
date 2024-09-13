@@ -1,22 +1,32 @@
 <?php
 require_once "./logincheck.php"; 
 
+$id=(int) $_GET['id'];
+if (!isset( $_GET['id'])){
+  // die("Please provide a valid ID for the category");
+  header("Location:products.php?error=Please provide a valid ID for the category");
+  die;
+}
+$id=(int)  $_GET['id'];
+
+$sql="SELECT * FROM products WHERE id=$id";
+$stmt= $con->prepare($sql);
+$stmt->execute();
+$product = $stmt->fetch(PDO::FETCH_ASSOC);
+if(!$product){
+  // die("No category found with the given ID");
+   header("Location:products.php?error=Please provide a valid ID for the product");
+   die;
+}
+// print_r($category);
+// die;
+
 $stmt= $con->prepare("SELECT * FROM categories");
 $stmt->execute();
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$uploadPath="../product_images";
-
-//upload
-//$_FILES
-//is_uploaded_file
-//move_uploaded_file
-//basename
-
 if($_SERVER['REQUEST_METHOD']=== 'POST'){
-
-  //print_r($_FILES);
-      
+      //handle login submit
       $sku = $_POST['sku'];
       $name = $_POST['name'];
       $price = $_POST['price'];
@@ -24,21 +34,14 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
       $description = $_POST['description'];
       $status=$_POST['status'];
 
-      $imageName=null;
-      if(is_uploaded_file($_FILES['image_name']['tmp_name'])){
-        $imageNmae= $_FILES['image_name']['name'];
-        move_uploaded_file($_FILES['image_name']['tmp_name'],$uploadPath."/".$imageName);
-       
-      }
-
-      $sql="INSERT INTO products SET
-      sku='$sku',
+      $sql="UPDATE products SET
+         sku='$sku',
       name='$name',
-       image_name='$imageName',
       price=$price,
       category_id=$category_id,
       description='$description',
-      status=$status";
+      status=$status
+      WHERE id=$id";
 
       $catStmt= $con->prepare($sql);
       $catStmt->execute();
@@ -65,22 +68,31 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
     </p>
      <?php require_once("./menus.php");?>
 <div class="main" >
-<h2>Products</h2>
-
+<h2> Products</h2>
 <div class="card-header">
    Add New Products
 </div>
-
 <div class="card-body">
+    
     <form method="post" action="" enctype="multipart/form-data">
     <div class="form-group">
     <label for="name">SKU:</label>
-    <input type="text" name="sku" class="form-control" id="sku">
+    <input 
+    value="<?php echo $product['sku'];?>"
+    type="text" 
+    required 
+    name="sku" 
+    class="form-control" id="sku">
   </div>
 
   <div class="form-group">
     <label for="name">Name:</label>
-    <input type="text" required name="name" class="form-control" id="name">
+    <input 
+    value="<?php echo $product['name'];?>"
+    type="text" 
+    required 
+    name="name" 
+    class="form-control" id="name">
   </div>
 
   <div class="form-group">
@@ -88,34 +100,36 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
     <select name="category_id" id="category_id" class="form-control">
         <option value="">Select Category</option>
         <?php foreach($categories as $category){ ?>
-         <option value="<?php echo $category['id'];?>"> <?php echo $category['name'];?></option>
+         <option <?php echo $product['status']==$category['id']?'selected':'';?>
+          value="<?php echo $category['id'];?>">
+           <?php echo $category['name'];?></option>
          <?php } ?>
     </select>
   </div>
 
   <div class="form-group">
-      <label for="name">Price:</label>
-      <input type="number" min="0" name="price" class="form-control" id="price">
-    </div>
-    <div class="form-group">
-      <label for="image_name">Image:</label>
-      <input type="file" accept=".jpg,.jpeg,.png"  name="image_name" class="form-control" id="image_name">
-    </div>
+    <label for="name">Price:</label>
+    <input 
+    value="<?php echo $product['price'];?>"
+    type="number" 
+    required 
+    name="price" 
+    class="form-control" id="price">
+  </div>
 
   <div class="form-group">
     <label for="description">Description:</label>
-   <textarea rows="5" name="description" id="description" class="form-control"></textarea>
+   <textarea rows="5" name="description" id="description" class="form-control"><?php echo $product['description'];?></textarea>
   </div>
 
   <div class="form-control">
     <label for="status">Status:</label>
     <select name="status" id="status" class="form-control">
         <option value="">Select status</option>
-        <option value="1">Active</option>
-        <option value="0">Inactive</option>
+        <option value="1" <?php echo $product['status']=='1'?'selected':'';?>>Active</option>
+        <option value="0" <?php echo $product['status']=='0'?'selected':'';?>>Inactive</option>
     </select>
   </div>
-
   <button type="submit" class="btn btn-primary">Save</button>
   <a href="products.php" class="btn btn-secondary">Cancel</a>
 </form>
