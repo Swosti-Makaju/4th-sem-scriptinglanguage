@@ -1,6 +1,5 @@
 <?php
 require_once "./logincheck.php"; 
-
 $id=(int) $_GET['id'];
 if (!isset( $_GET['id'])){
   // die("Please provide a valid ID for the category");
@@ -8,7 +7,7 @@ if (!isset( $_GET['id'])){
   die;
 }
 $id=(int)  $_GET['id'];
-
+$uploadPath="../product_images";
 $sql="SELECT * FROM products WHERE id=$id";
 $stmt= $con->prepare($sql);
 $stmt->execute();
@@ -33,11 +32,24 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
       $category_id= $_POST['category_id'];
       $description = $_POST['description'];
       $status=$_POST['status'];
+      $imageNameOld=$_POST['image_name_old'];
+
+      $imageName=$imageNameOld;
+      if(is_uploaded_file($_FILES['image_name']['tmp_name'])){
+        //delete old image before uploading new
+        if(!empty($imageNameOld)&& file_exists('../product_images/'.$imageNameOld)){
+          unlink('../product_images/'.$imageNameOld);
+        }
+        $imageName=$_FILES['image_name']['name'];
+        move_uploaded_file($_FILES['image_name']['tmp_name'],$uploadPath."/".$imageName);
+        // echo 'image uploaded successfully.';
+      }
 
       $sql="UPDATE products SET
          sku='$sku',
       name='$name',
       price=$price,
+      image_name='$imageName',
       category_id=$category_id,
       description='$description',
       status=$status
@@ -74,7 +86,7 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
 </div>
 <div class="card-body">
     
-    <form method="post" action="" enctype="multipart/form-data">
+    <form method="post" action=""  enctype="multipart/form-data">
     <div class="form-group">
     <label for="name">SKU:</label>
     <input 
@@ -100,7 +112,7 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
     <select name="category_id" id="category_id" class="form-control">
         <option value="">Select Category</option>
         <?php foreach($categories as $category){ ?>
-         <option <?php echo $product['status']==$category['id']?'selected':'';?>
+         <option <?php echo $product['status']=='1'?'selected':'';?>
           value="<?php echo $category['id'];?>">
            <?php echo $category['name'];?></option>
          <?php } ?>
@@ -116,6 +128,16 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
     name="price" 
     class="form-control" id="price">
   </div>
+
+  <div class="form-group">
+      <label for="image_name">Image:</label>
+      <input type="file" accept=".jpg,.jpeg,.png"  name="image_name" class="form-control" id="image_name">
+      <input type="hidden" name="image_name_old" value="<?php echo $product['image_name'];?>>
+
+       <?php if(!empty($product['image_name'])&& file_exists('../product_images/' .$product['image_name'])){?>
+                    <img width="100"  src="../product_images/<?php echo $product['image_name'];?>" alt="">
+               <?php } ?> 
+    </div>
 
   <div class="form-group">
     <label for="description">Description:</label>

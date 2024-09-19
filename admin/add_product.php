@@ -6,17 +6,8 @@ $stmt->execute();
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $uploadPath="../product_images";
-
-//upload
-//$_FILES
-//is_uploaded_file
-//move_uploaded_file
-//basename
-
-if($_SERVER['REQUEST_METHOD']=== 'POST'){
-
-  //print_r($_FILES);
-      
+if($_SERVER['REQUEST_METHOD']=== 'POST'){  
+      //handle login submit
       $sku = $_POST['sku'];
       $name = $_POST['name'];
       $price = $_POST['price'];
@@ -24,18 +15,18 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
       $description = $_POST['description'];
       $status=$_POST['status'];
 
-      $imageName=null;
+       $imageName=null;
       if(is_uploaded_file($_FILES['image_name']['tmp_name'])){
-        $imageNmae= $_FILES['image_name']['name'];
+        $imageName=$_FILES['image_name']['name'];
         move_uploaded_file($_FILES['image_name']['tmp_name'],$uploadPath."/".$imageName);
-       
+        // echo 'image uploaded successfully.';
       }
 
       $sql="INSERT INTO products SET
       sku='$sku',
       name='$name',
-       image_name='$imageName',
       price=$price,
+      image_name='$imageName',
       category_id=$category_id,
       description='$description',
       status=$status";
@@ -66,23 +57,21 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
      <?php require_once("./menus.php");?>
 <div class="main" >
 <h2>Products</h2>
-
 <div class="card-header">
    Add New Products
 </div>
-
 <div class="card-body">
+    
+
     <form method="post" action="" enctype="multipart/form-data">
     <div class="form-group">
     <label for="name">SKU:</label>
     <input type="text" name="sku" class="form-control" id="sku">
   </div>
-
   <div class="form-group">
     <label for="name">Name:</label>
     <input type="text" required name="name" class="form-control" id="name">
   </div>
-
   <div class="form-group">
     <label for="category_id">Category:</label>
     <select name="category_id" id="category_id" class="form-control">
@@ -101,12 +90,10 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
       <label for="image_name">Image:</label>
       <input type="file" accept=".jpg,.jpeg,.png"  name="image_name" class="form-control" id="image_name">
     </div>
-
   <div class="form-group">
     <label for="description">Description:</label>
    <textarea rows="5" name="description" id="description" class="form-control"></textarea>
   </div>
-
   <div class="form-control">
     <label for="status">Status:</label>
     <select name="status" id="status" class="form-control">
@@ -115,7 +102,6 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
         <option value="0">Inactive</option>
     </select>
   </div>
-
   <button type="submit" class="btn btn-primary">Save</button>
   <a href="products.php" class="btn btn-secondary">Cancel</a>
 </form>
