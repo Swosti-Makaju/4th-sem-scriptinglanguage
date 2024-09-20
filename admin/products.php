@@ -74,7 +74,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <td> Rs.<?php echo number_format($product['price'],2);?></td>
 
             <td>
-                <?php if(!empty($product['image_name'])&& file_exists('../product_images' .$product['image_name'])) { ?>
+                <?php if(!empty($product['image_name'])&& file_exists('../product_images/' .$product['image_name'])) { ?>
                 <img width="100" src="../product_images/<?php echo $product['image_name'];?>" alt="">
             <?php } ?>
                 </td>

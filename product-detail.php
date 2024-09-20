@@ -2,23 +2,17 @@
 require_once "./connection.php";
 
 // get all the latest/new products (3)
-$categoryId = isset($_GET['category_id'])? (int) $_GET['category_id']: '';
-/*if (empty($categoryId)) {
+$categoryId = (int) $_GET['category_id'];
+if (empty($categoryId)) {
 echo "Invalid category, please choose category first.";
 die;
-}*/
-
-$where='';
-if (!empty($categoryId)){
-$where="WHERE products.category_id=$categoryId";
 }
-
 $sql = "SELECT
 categories.name as category_name,
 products.*
 FROM products
 INNER JOIN categories ON categories.id=products.category_id
-$where
+WHERE products.category_id=$categoryId
 ORDER BY products.id DESC";
 
 $stmt = $con->prepare($sql);
@@ -60,7 +54,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <p>
 Price: Rs. <?php echo number_format($product['price'], 2); ?>
 </p>
-<a class="btn btn-primary" href="product-details.php?product_id=<php echo $latestProduct['id'];?>">View More</a>
+<a class="btn btn-primary" href="">View More</a>
 </div>
 <?php } ?>
 </div>

@@ -10,6 +10,11 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <li class="nav-item active">
 <a class="nav-link text-white" href="./index.php">Home <span class="sr-only">(current)</span></a>
 </li>
+
+<li class="nav-item active">
+<a class="nav-link text-white" href="./products.php">All Products <span class="sr-only">(current)</span></a>
+</li>
+
 <?php foreach ($categories as $category) { ?>
 <li class="nav-item text-white">
 <a class="nav-link text-white" href="products.php?category_id=<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a>

@@ -49,7 +49,7 @@ $latestProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <p>
 Price: Rs. <?php echo number_format($latestProduct['price'], 2); ?>
 </p>
-<a class="btn btn-primary" href="">View More</a>
+<a class="btn btn-primary" href="product-details.php?product_id=<php echo $latestProduct['id'];?>">View More</a>
 </div>
 <?php } ?>
 </div>
