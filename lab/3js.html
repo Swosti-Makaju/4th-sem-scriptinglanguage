@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Change DIV Text</title>
+</head>
+<body>
+  <div id="myDiv">This is the original text.</div>
+  <button id="changeTextButton">Change Text</button>
+
+  <script>
+    // Select the DIV element using querySelector
+    const myDiv = document.querySelector("#myDiv");
+
+    // Select the button element
+    const changeTextButton = document.querySelector("#changeTextButton");
+
+    // Add a click event listener to the button
+    changeTextButton.addEventListener("click", () => {
+      // Change the text content of the DIV
+      myDiv.textContent = "This is the new text!";
+    });
+  </script>
+</body>
+</html>

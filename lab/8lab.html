@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <title>Loop Examples</title> </head>
+<body>
+    <h1>Loop Examples</h1>
+    <script>
+        const numbers = [11, 12, 13, 14, 15];
+        // Using a while loop
+        console.log("Using while loop:");
+        let i = 0;
+        while (i < numbers.length) {
+            console.log(numbers[i]);
+            i++; }
+        // Using a for loop
+        console.log("\nUsing for loop:");
+        for (let j = 0; j < numbers.length; j++) {
+            console.log(numbers[j]);  }
+        // Using forEach loop
+        console.log("\nUsing forEach loop:");
+        numbers.forEach(function(number) {
+            console.log(number);
+        });
+    </script> </body>  </html>

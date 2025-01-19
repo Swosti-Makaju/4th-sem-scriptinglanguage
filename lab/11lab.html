@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <title>Employee List</title> </head>
+<body>
+    <h1>Employee List</h1>
+    <ul id="employeeList"> </ul>
+    <script>
+        var employees = [{
+                firstName: "Amy",
+                lastName: "Martin",
+                age: 28,
+                department: "Doctor",
+                position: "Doctor",
+                salary: 100000
+            },
+            {
+                firstName: "Jonathon",
+                lastName: "Smith",
+                age: 25,
+                department: "Marketing",
+                position: "Marketing Specialist",
+                salary: 45000
+            },
+            {
+                firstName: "Luffy",
+                lastName: "Rogger",
+                age: 35,
+                department: "Finance",
+                position: "Financial Analyst",
+                salary: 50000
+            }
+        ];
+        function displayEmployeeList() {
+            const employeeListUl = document.getElementById("employeeList");
+            employees.forEach(function(employee) {
+                const li = document.createElement("li");
+                li.textContent = `${employee.firstName} ${employee.lastName} | Age:     ${employee.age} | Department: ${employee.department} | Position: ${employee.position} | Salary: ${employee.salary}`;
+                employeeListUl.appendChild(li);
+            });
+        }
+        displayEmployeeList();
+    </script>
+  </body>  
+ </html>

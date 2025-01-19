@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NoScript Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .noscript-message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function showMessage() {
+            alert("JavaScript is enabled. This is a JavaScript-based message!");
+        }
+    </script>
+</head>
+<body>
+    <h1>Example of NoScript</h1>
+    <p>If JavaScript is enabled in your browser, click the button below:</p>
+    <button onclick="showMessage()">Click Me</button>
+
+    <noscript>
+        <div class="noscript-message">
+            <p>It seems that JavaScript is disabled in your browser.</p>
+            <p>Please enable JavaScript to fully experience this page.</p>
+        </div>
+    </noscript>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript in 3 Ways</title>
+    <!-- Internal JavaScript -->
+    <script>
+        function showInternalMessage() {
+            alert("This is an Internal JavaScript example!");
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Inserted in 3 Ways</h1>
+
+    <!-- Inline JavaScript -->
+    <button onclick="alert('This is an Inline JavaScript example!')">Click for Inline Script</button>
+
+    <!-- Call Internal JavaScript -->
+    <button onclick="showInternalMessage()">Click for Internal Script</button>
+
+    <!-- External JavaScript -->
+    <button onclick="showExternalMessage()">Click for External Script</button>
+
+    <!-- Linking External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

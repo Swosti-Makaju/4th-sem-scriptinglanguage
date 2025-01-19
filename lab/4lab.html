@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Two Numbers</title>
+    <script>
+        function addNumbers() {
+            // Get the values from the input fields
+            let num1 = parseFloat(document.getElementById('number1').value);
+            let num2 = parseFloat(document.getElementById('number2').value);
+
+            // Check if inputs are valid numbers
+            if (isNaN(num1) || isNaN(num2)) {
+                alert('Please enter valid numbers.');
+                return;
+            }
+
+            // Add the two numbers
+            let sum = num1 + num2;
+
+            // Display the result in the result input box
+            document.getElementById('result').value = sum;
+        }
+    </script>
+</head>
+<body>
+    <h1>Add Two Numbers</h1>
+    <label for="number1">Number 1:</label>
+    <input type="text" id="number1" placeholder="Enter first number">
+    <br><br>
+
+    <label for="number2">Number 2:</label>
+    <input type="text" id="number2" placeholder="Enter second number">
+    <br><br>
+
+    <button onclick="addNumbers()">Add</button>
+    <br><br>
+
+    <label for="result">Result:</label>
+    <input type="text" id="result" readonly>
+</body>
+</html>

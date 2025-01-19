@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create HTML Element</title>
+</head>
+<body>
+    <h2>Create HTML Element</h2>
+    <button id="createBtn">Create Element</button>
+    <script>
+        document.getElementById('createBtn').addEventListener('click', function () {
+            var paragraph = document.createElement('p');
+            paragraph.textContent = 'This paragraph is dynamically created using JavaScript!';
+            document.body.appendChild(paragraph);
+        });
+    </script>
+</body>
+</html>
